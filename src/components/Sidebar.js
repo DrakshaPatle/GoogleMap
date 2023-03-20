@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const Sidebar = ({children}) => {
-    const[isOpen ,setIsOpen] = useState(false);
+    const[isOpen ,setIsOpen] = useState(true);
     const toggle = () => setIsOpen (!isOpen);
     const menuItem=[
         {
@@ -50,10 +50,9 @@ const Sidebar = ({children}) => {
         <div className="container">
 
            <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
-
-
                <div className="top_section">
                    <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
+
                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
                        <FaBars onClick={toggle}/>
                    </div>
