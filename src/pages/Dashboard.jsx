@@ -12,6 +12,10 @@ import {
   Text,
 } from '@chakra-ui/react'
 
+
+
+
+
 import { AspectRatio } from '@chakra-ui/react'
 import { Grid, GridItem } from '@chakra-ui/react'
 
@@ -27,6 +31,9 @@ import {
 } from '@react-google-maps/api'
 import { useRef, useState } from 'react'
 
+
+
+
 const center = { lat: 48.8584, lng: 2.2945 }
 
 function Dashboard() {
@@ -36,12 +43,17 @@ function Dashboard() {
     libraries: ['places'],
   })
 
+
+
+
   const [map, setMap] = useState(/** @type google.maps.Map */(null))
   const [routesNum, setRoutesNum] = useState(0)
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
   const [showTraffic, setShowTraffic] = useState(false);
+
+
 
 
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -69,7 +81,10 @@ function Dashboard() {
       // sensors : false,
       // alternatives : true,
 
-      provideRouteAlternatives: true
+      provideRouteAlternatives: true,
+      drivingOptions : {
+        departureTime : new Date(),
+      }
     })
 
     console.log(results.routes);
@@ -214,6 +229,16 @@ function Dashboard() {
                   <DirectionsRenderer options={
                     {
                       routeIndex: 0,
+                      polylineOptions: {
+                        strokeColor: "green",
+                      }
+                    }
+                  } directions={directionsResponse} />
+                )}
+                {directionsResponse && (
+                  <DirectionsRenderer options={
+                    {
+                      routeIndex: 2,
                       polylineOptions: {
                         strokeColor: "green",
                       }
